@@ -11,17 +11,23 @@ var statusSpan = document.getElementById('status-span');
 statusSpan.innerHTML = 'Not Connected';
 
 element.style.backgroundColor = 'gray';
+var onopen = socket.onopen;
 socket.onopen = function() {
+  onopen();
   statusSpan.innerHTML = 'Connected';
   element.style.backgroundColor = 'white';
 };
 
+var onclose = socket.onclose;
 socket.onclose = function() {
+  onclose();
   statusSpan.innerHTML = 'Closed';
   element.style.backgroundColor = 'gray';
 };
 
+var onerror = socket.onerror;
 socket.onerror = function() {
+  onerror();
   statusSpan.innerHTML = 'Error';
   element.style.backgroundColor = 'red';
 };
